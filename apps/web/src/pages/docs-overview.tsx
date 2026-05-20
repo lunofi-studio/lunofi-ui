@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { cn } from '@lunofi/ui/lib/utils';
 
-import { CodeBlock } from '@/components/code-block';
+import { InstallCommand } from '@/components/install-command';
 import { useDocsContext } from '@/pages/docs-layout';
-import { groupByCategory, installCommand } from '@/lib/registry';
+import { groupByCategory } from '@/lib/registry';
 import { getDemo } from '@/showcase/demos';
 
 const FEATURED = ['button', 'select', 'dialog', 'tabs'];
@@ -33,7 +33,7 @@ function DocsOverviewPage() {
       </p>
 
       <div className="mt-7 max-w-md">
-        <CodeBlock code={installCommand('button')} />
+        <InstallCommand name="button" />
       </div>
 
       <section className="mt-12">

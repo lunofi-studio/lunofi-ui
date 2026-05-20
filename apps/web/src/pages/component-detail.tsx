@@ -3,12 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { Badge } from '@lunofi/ui/badge';
 import { Skeleton } from '@lunofi/ui/skeleton';
 
-import { CodeBlock } from '@/components/code-block';
 import { ComponentPreview } from '@/components/component-preview';
 import { CopyButton } from '@/components/copy-button';
+import { InstallCommand } from '@/components/install-command';
 import { SyntaxHighlight } from '@/components/syntax-highlight';
 import { useDocsContext } from '@/pages/docs-layout';
-import { categoryLabels, installCommand, useRegistryItem } from '@/lib/registry';
+import { categoryLabels, useRegistryItem } from '@/lib/registry';
 import { getDemo } from '@/showcase/demos';
 
 /**
@@ -64,7 +64,7 @@ function ComponentDetailPage() {
       <section className="mt-8">
         <h2 className="text-sm font-medium tracking-tight">Installation</h2>
         <div className="mt-3 max-w-md">
-          <CodeBlock code={installCommand(indexItem.name)} />
+          <InstallCommand name={indexItem.name} />
         </div>
       </section>
 

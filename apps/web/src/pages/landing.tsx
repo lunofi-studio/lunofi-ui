@@ -14,8 +14,8 @@ import { Button } from '@lunofi/ui/button';
 import { cn } from '@lunofi/ui/lib/utils';
 
 import { CodeBlock } from '@/components/code-block';
+import { InstallCommand } from '@/components/install-command';
 import { GITHUB_URL } from '@/components/site-header';
-import { installCommand } from '@/lib/registry';
 import { getDemo } from '@/showcase/demos';
 
 const valueProps = [
@@ -36,7 +36,13 @@ const valueProps = [
   },
 ];
 
-const quickStartSteps = [
+type QuickStartStep = {
+  step: string;
+  title: string;
+  body: string;
+} & ({ command: string; install?: never } | { install: string; command?: never });
+
+const quickStartSteps: QuickStartStep[] = [
   {
     step: '1',
     title: 'Initialize your project',
@@ -47,7 +53,7 @@ const quickStartSteps = [
     step: '2',
     title: 'Add a component',
     body: "Pull any component's source straight into your project. Repeat for as many as you need.",
-    command: installCommand('button'),
+    install: 'button',
   },
 ];
 
@@ -110,7 +116,7 @@ function Hero() {
             className="reveal mt-9 max-w-md"
             style={{ '--reveal-delay': '180ms' } as React.CSSProperties}
           >
-            <CodeBlock code={installCommand('button')} emphasis />
+            <InstallCommand name="button" emphasis />
             <p className="text-muted-foreground mt-2 text-xs">
               Already set up? Add any component with the <span className="font-mono">lunofi</span>{' '}
               CLI — see the quick start below.
@@ -178,7 +184,11 @@ function QuickStart() {
                   {step.body}
                 </p>
                 <div className="mt-3">
-                  <CodeBlock code={step.command} />
+                  {'install' in step ? (
+                    <InstallCommand name={step.install} />
+                  ) : (
+                    <CodeBlock code={step.command} />
+                  )}
                 </div>
               </div>
             </li>
