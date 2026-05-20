@@ -37,11 +37,7 @@ function ComponentCard({ item }: ComponentCardProps) {
   return (
     <article className="bg-card group flex flex-col overflow-hidden rounded-xl border">
       <div className="flex min-h-[8.5rem] flex-1 items-center justify-center border-b p-7">
-        {demo ? (
-          demo()
-        ) : (
-          <span className="text-muted-foreground/70 font-mono text-xs">Preview in Storybook</span>
-        )}
+        {demo?.()}
       </div>
 
       <div className="flex flex-col gap-3 p-5">
