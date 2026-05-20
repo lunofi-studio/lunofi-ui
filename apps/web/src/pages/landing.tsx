@@ -16,6 +16,7 @@ import { cn } from '@lunofi/ui/lib/utils';
 import { CodeBlock } from '@/components/code-block';
 import { GITHUB_URL } from '@/components/site-header';
 import { installCommand } from '@/lib/registry';
+import { getDemo } from '@/showcase/demos';
 
 const valueProps = [
   {
@@ -35,10 +36,28 @@ const valueProps = [
   },
 ];
 
+const quickStartSteps = [
+  {
+    step: '1',
+    title: 'Initialize your project',
+    body: 'Set up the calm theme tokens and your components directory.',
+    command: 'npx lunofi init',
+  },
+  {
+    step: '2',
+    title: 'Add a component',
+    body: "Pull any component's source straight into your project. Repeat for as many as you need.",
+    command: installCommand('button'),
+  },
+];
+
+const featuredComponents = ['button', 'select', 'dialog', 'table'];
+
 function LandingPage() {
   return (
     <>
       <Hero />
+      <QuickStart />
       <ValueProps />
       <ThemingNote />
       <ClosingCta />
@@ -56,12 +75,12 @@ function Hero() {
       <div className="mx-auto w-full max-w-6xl px-5 pt-20 pb-16 sm:px-8 sm:pt-28 sm:pb-24">
         <div className="max-w-2xl">
           <Link
-            to="/components"
-            className="reveal text-muted-foreground hover:text-foreground hover:border-border/80 group bg-card/60 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+            to="/docs/components"
+            className="reveal text-muted-foreground hover:text-foreground hover:border-border/80 group bg-card/60 focus-visible:ring-ring/50 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm transition-colors outline-none focus-visible:ring-[3px]"
             style={{ '--reveal-delay': '0ms' } as React.CSSProperties}
           >
             <span className="bg-primary size-1.5 rounded-full" aria-hidden />
-            38 components in the registry
+            36 components in the registry
             <ArrowRightIcon
               className="size-3.5 transition-transform group-hover:translate-x-0.5"
               aria-hidden
@@ -93,8 +112,8 @@ function Hero() {
           >
             <CodeBlock code={installCommand('button')} emphasis />
             <p className="text-muted-foreground mt-2 text-xs">
-              The <span className="font-mono">lunofi</span> CLI is on the way. Until then, copy any
-              component&apos;s source straight from the showcase.
+              Already set up? Add any component with the <span className="font-mono">lunofi</span>{' '}
+              CLI — see the quick start below.
             </p>
           </div>
 
@@ -102,7 +121,7 @@ function Hero() {
             className="reveal mt-8 flex flex-wrap items-center gap-3"
             style={{ '--reveal-delay': '240ms' } as React.CSSProperties}
           >
-            <Button size="lg" render={<Link to="/components" />}>
+            <Button size="lg" render={<Link to="/docs/components" />}>
               Browse components
               <ArrowRightIcon aria-hidden />
             </Button>
@@ -120,9 +139,98 @@ function Hero() {
   );
 }
 
+function QuickStart() {
+  return (
+    <section className="mx-auto w-full max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
+        <div className="lg:sticky lg:top-20">
+          <Badge variant="outline" className="mb-4">
+            Quick start
+          </Badge>
+          <h2 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            Two commands to your first component.
+          </h2>
+          <p className="text-muted-foreground mt-4 leading-relaxed text-pretty">
+            lunofi-ui is a registry, not a runtime. The CLI copies real source files into your
+            project — you commit them, edit them, and own them. No package to update, nothing
+            hidden.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Button render={<Link to="/docs/components" />}>
+              Read the docs
+              <ArrowRightIcon aria-hidden />
+            </Button>
+            <Button variant="ghost" render={<Link to="/docs/components/button" />}>
+              See the Button page
+            </Button>
+          </div>
+        </div>
+
+        <ol className="flex flex-col gap-6">
+          {quickStartSteps.map((step) => (
+            <li key={step.step} className="bg-card flex gap-4 rounded-xl border p-5 sm:p-6">
+              <span className="bg-accent text-primary flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-medium">
+                {step.step}
+              </span>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-medium tracking-tight">{step.title}</h3>
+                <p className="text-muted-foreground mt-1 text-sm leading-relaxed text-pretty">
+                  {step.body}
+                </p>
+                <div className="mt-3">
+                  <CodeBlock code={step.command} />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <FeaturedComponents />
+    </section>
+  );
+}
+
+function FeaturedComponents() {
+  return (
+    <div className="mt-14">
+      <div className="flex items-end justify-between gap-3">
+        <div>
+          <h3 className="font-medium tracking-tight">Featured components</h3>
+          <p className="text-muted-foreground mt-1 text-sm text-pretty">
+            A glance at what you get — every one is live and interactive in the docs.
+          </p>
+        </div>
+        <Link
+          to="/docs/components"
+          className="text-muted-foreground hover:text-foreground hidden items-center gap-1.5 text-sm transition-colors sm:inline-flex"
+        >
+          View all
+          <ArrowRightIcon className="size-3.5" aria-hidden />
+        </Link>
+      </div>
+
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {featuredComponents.map((name) => {
+          const demo = getDemo(name);
+          return (
+            <Link
+              key={name}
+              to={`/docs/components/${name}`}
+              className="group bg-card hover:border-border focus-visible:ring-ring/50 flex min-h-36 items-center justify-center overflow-hidden rounded-xl border p-5 outline-none focus-visible:ring-[3px]"
+            >
+              <div className="pointer-events-none origin-center scale-90">{demo?.()}</div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function ValueProps() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-5 sm:px-8">
+    <section className="mx-auto w-full max-w-6xl px-5 pt-24 sm:px-8">
       <div className="grid gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3">
         {valueProps.map(({ icon: Icon, title, body }) => (
           <div key={title} className="bg-card flex flex-col gap-3 p-7">
@@ -241,7 +349,7 @@ function ClosingCta() {
               Explore blocks
               <ArrowRightIcon aria-hidden />
             </Button>
-            <Button size="lg" variant="ghost" render={<Link to="/components" />}>
+            <Button size="lg" variant="ghost" render={<Link to="/docs/components" />}>
               Or browse components
             </Button>
           </div>
