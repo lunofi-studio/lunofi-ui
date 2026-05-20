@@ -1,8 +1,5 @@
 import * as React from 'react';
-import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
-import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
-import { bundledLanguages } from 'shiki/langs';
-import { bundledThemes } from 'shiki/themes';
+import type { HighlighterCore } from 'shiki/core';
 
 /**
  * Languages and themes the docs site highlights. Kept deliberately small —
@@ -22,13 +19,37 @@ let highlighterPromise: Promise<HighlighterCore> | null = null;
  * engine — no WebAssembly fetch — loaded with just the tsx + bash grammars and
  * the github light/dark theme pair. The promise is memoized so every code
  * block shares a single highlighter instance.
+ *
+ * Everything is loaded via dynamic `import()` so Shiki's core, engine, the two
+ * grammars, and the theme pair are code-split into an async chunk that only
+ * downloads the first time something is highlighted — keeping it out of the
+ * initial bundle. The `shiki/langs` and `shiki/themes` barrels are avoided in
+ * favour of exact module paths so no other grammar is pulled in.
  */
 function getHighlighter(): Promise<HighlighterCore> {
-  highlighterPromise ??= createHighlighterCore({
-    themes: [bundledThemes[LIGHT_THEME], bundledThemes[DARK_THEME]],
-    langs: [bundledLanguages.tsx, bundledLanguages.bash],
-    engine: createJavaScriptRegexEngine(),
-  });
+  highlighterPromise ??= (async () => {
+    const [
+      { createHighlighterCore },
+      { createJavaScriptRegexEngine },
+      tsxGrammar,
+      bashGrammar,
+      githubLight,
+      githubDark,
+    ] = await Promise.all([
+      import('shiki/core'),
+      import('shiki/engine/javascript'),
+      import('shiki/langs/tsx.mjs'),
+      import('shiki/langs/bash.mjs'),
+      import('shiki/themes/github-light.mjs'),
+      import('shiki/themes/github-dark.mjs'),
+    ]);
+
+    return createHighlighterCore({
+      themes: [githubLight.default, githubDark.default],
+      langs: [tsxGrammar.default, bashGrammar.default],
+      engine: createJavaScriptRegexEngine(),
+    });
+  })();
   return highlighterPromise;
 }
 
