@@ -14,7 +14,7 @@ function SiteFooter() {
           </p>
         </div>
         <nav className="text-muted-foreground flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-          <Link to="/components" className="hover:text-foreground transition-colors">
+          <Link to="/docs/components" className="hover:text-foreground transition-colors">
             Components
           </Link>
           <Link to="/blocks" className="hover:text-foreground transition-colors">

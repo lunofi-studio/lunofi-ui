@@ -10,7 +10,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 const GITHUB_URL = 'https://github.com/lunofi-ui/lunofi-ui';
 
 const navItems = [
-  { to: '/components', label: 'Components' },
+  { to: '/docs/components', label: 'Components' },
   { to: '/blocks', label: 'Blocks' },
 ];
 

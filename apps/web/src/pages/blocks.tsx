@@ -4,6 +4,7 @@ import { CheckIcon, CodeIcon, CopyIcon, EyeIcon } from 'lucide-react';
 import { Button } from '@lunofi/ui/button';
 import { cn } from '@lunofi/ui/lib/utils';
 
+import { SyntaxHighlight } from '@/components/syntax-highlight';
 import { useCopy } from '@/lib/clipboard';
 import { blocks, type BlockDefinition } from '@/blocks/definitions';
 
@@ -66,9 +67,11 @@ function BlockShowcase({ block }: { block: BlockDefinition }) {
             </div>
           </div>
         ) : (
-          <pre className="max-h-[28rem] overflow-auto p-5 font-mono text-[0.8125rem] leading-relaxed">
-            <code>{block.source}</code>
-          </pre>
+          <SyntaxHighlight
+            code={block.source}
+            lang="tsx"
+            className="max-h-[28rem] overflow-auto [&_pre]:p-5"
+          />
         )}
       </div>
     </article>
