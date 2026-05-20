@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion';
 
@@ -31,6 +32,15 @@ export const Default: Story = {
       </AccordionItem>
     </Accordion>
   ),
+  // Proves a collapsed item expands on click: item-2 starts closed, clicking
+  // its trigger flips aria-expanded and reveals the panel.
+  play: async ({ canvas, userEvent }) => {
+    const styledTrigger = canvas.getByRole('button', { name: /is it styled/i });
+    await expect(styledTrigger).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(styledTrigger);
+    await expect(styledTrigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(await canvas.findByText(/comes with default styles/i)).toBeVisible();
+  },
 };
 
 export const Multiple: Story = {

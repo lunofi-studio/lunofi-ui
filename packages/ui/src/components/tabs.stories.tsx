@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 
 import { Tabs, TabsList, TabsTab, TabsPanel } from './tabs';
 
@@ -25,6 +26,14 @@ export const Default: Story = {
       </TabsPanel>
     </Tabs>
   ),
+  // Proves tab switching swaps the visible panel and updates aria-selected.
+  play: async ({ canvas, userEvent }) => {
+    const passwordTab = canvas.getByRole('tab', { name: /password/i });
+    await expect(passwordTab).toHaveAttribute('aria-selected', 'false');
+    await userEvent.click(passwordTab);
+    await expect(passwordTab).toHaveAttribute('aria-selected', 'true');
+    await expect(await canvas.findByText(/change your password here/i)).toBeVisible();
+  },
 };
 
 export const LineVariant: Story = {

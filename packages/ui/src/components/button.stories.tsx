@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect } from 'storybook/test';
 import { Mail, Loader2, ChevronRight, Plus } from 'lucide-react';
 
 import { Button } from './button';
@@ -106,4 +107,20 @@ export const Loading: Story = {
 
 export const AsLink: Story = {
   render: () => <Button render={<a href="#story" />}>Rendered as anchor</Button>,
+};
+
+// The single project-wide CSS-load proof. The default Button uses `bg-primary`,
+// which resolves to the calm theme's light `--primary` token. Chromium reports
+// the computed background in its source oklch() form (≈ rgb(84, 105, 146) in
+// sRGB). An unstyled button would compute to a transparent background, so this
+// exact match proves Tailwind v4 + the theme tokens loaded via the shared
+// preview's globals.css import.
+export const CssCheck: Story = {
+  args: {
+    children: 'Submit',
+  },
+  play: async ({ canvas }) => {
+    const button = canvas.getByRole('button', { name: /submit/i });
+    await expect(getComputedStyle(button).backgroundColor).toBe('oklch(0.52 0.07 264)');
+  },
 };

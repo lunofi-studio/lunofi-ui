@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 
 import { Button } from './button';
 import {
@@ -38,6 +39,15 @@ export const Default: Story = {
       </DialogContent>
     </Dialog>
   ),
+  // Proves the trigger opens the portalled popup: dialog content lives outside
+  // the canvas root (Base UI portals to document.body), so query the document.
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    await userEvent.click(canvas.getByRole('button', { name: /open dialog/i }));
+    const dialog = await body.findByRole('dialog');
+    await expect(dialog).toHaveAttribute('data-open');
+    await expect(within(dialog).getByText(/edit profile/i)).toBeInTheDocument();
+  },
 };
 
 export const WithoutCloseButton: Story = {
