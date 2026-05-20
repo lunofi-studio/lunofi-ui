@@ -1,0 +1,18 @@
+/*
+ * lunofi-ui — turnkey theme entry.
+ *
+ * Import this once at your app root to get Tailwind, the animation utilities,
+ * the Geist variable font, and the calm lunofi token set:
+ *
+ *   @import '@lunofi/tailwind/theme.css';
+ *
+ * Prefer to manage Tailwind yourself? Import only the tokens instead:
+ *
+ *   @import 'tailwindcss';
+ *   @import '@lunofi/tailwind/tokens.css';
+ */
+
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/geist';
+@import './tokens.css';
