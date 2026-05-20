@@ -1,0 +1,94 @@
+{
+  "name": "@lunofi/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./button": {
+      "import": "./src/components/button.tsx"
+    },
+    "./badge": {
+      "import": "./src/components/badge.tsx"
+    },
+    "./card": {
+      "import": "./src/components/card.tsx"
+    },
+    "./input": {
+      "import": "./src/components/input.tsx"
+    },
+    "./textarea": {
+      "import": "./src/components/textarea.tsx"
+    },
+    "./skeleton": {
+      "import": "./src/components/skeleton.tsx"
+    },
+    "./spinner": {
+      "import": "./src/components/spinner.tsx"
+    },
+    "./separator": {
+      "import": "./src/components/separator.tsx"
+    },
+    "./table": {
+      "import": "./src/components/table.tsx"
+    },
+    "./breadcrumb": {
+      "import": "./src/components/breadcrumb.tsx"
+    },
+    "./progress": {
+      "import": "./src/components/progress.tsx"
+    },
+    "./pill": {
+      "import": "./src/components/pill.tsx"
+    },
+    "./announcement": {
+      "import": "./src/components/announcement.tsx"
+    },
+    "./banner": {
+      "import": "./src/components/banner.tsx"
+    },
+    "./container": {
+      "import": "./src/primitives/container.tsx"
+    },
+    "./section": {
+      "import": "./src/primitives/section.tsx"
+    },
+    "./page-header": {
+      "import": "./src/primitives/page-header.tsx"
+    },
+    "./lib/utils": {
+      "import": "./src/lib/utils.ts"
+    },
+    "./styles/globals.css": "./src/styles/globals.css"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "lint": "eslint .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1",
+    "lucide-react": "^0.577.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@lunofi/eslint-config": "workspace:*",
+    "@lunofi/tailwind": "workspace:*",
+    "@lunofi/tsconfig": "workspace:*",
+    "@storybook/addon-themes": "^10.4.0",
+    "@storybook/react-vite": "^10.4.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "storybook": "^10.4.0",
+    "tailwindcss": "^4.3.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.13"
+  }
+}
