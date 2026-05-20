@@ -23,7 +23,7 @@ function DocsOverviewPage() {
   );
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-5 py-12 sm:px-10">
+    <div className="w-full max-w-4xl px-6 py-10 sm:px-8 lg:px-12">
       <p className="text-muted-foreground font-mono text-sm">Components</p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-balance">Overview</h1>
       <p className="text-muted-foreground mt-3 leading-relaxed text-pretty">

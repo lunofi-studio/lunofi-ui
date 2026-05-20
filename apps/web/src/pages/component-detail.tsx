@@ -40,7 +40,7 @@ function ComponentDetailPage() {
   }
 
   return (
-    <article className="mx-auto w-full max-w-3xl px-5 py-12 sm:px-10">
+    <article className="w-full max-w-4xl px-6 py-10 sm:px-8 lg:px-12">
       <header>
         <div className="flex flex-wrap items-center gap-2">
           {indexItem.categories.map((category) => (

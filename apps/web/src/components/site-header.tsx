@@ -17,7 +17,7 @@ const navItems = [
 function SiteHeader() {
   return (
     <header className="border-border/70 bg-background/80 sticky top-0 z-40 border-b backdrop-blur-md">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-5 sm:px-8">
+      <div className="mx-auto flex h-14 w-full max-w-7xl items-center gap-6 px-5 sm:px-8">
         <Link
           to="/"
           className="rounded-md outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
