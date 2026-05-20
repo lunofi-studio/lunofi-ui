@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import type { PackageManager } from '@/lib/package-manager';
+import { addCommand } from '@/lib/package-manager';
+
 const INSTALL_PREFIX = 'npx lunofi add';
 
 /** Human labels for registry categories, used in the sidebar and filters. */
@@ -57,9 +60,14 @@ interface RegistryItem {
   files: RegistryFile[];
 }
 
-/** The intended install command for a registry item (the CLI is the model). */
-function installCommand(name: string): string {
-  return `${INSTALL_PREFIX} ${name}`;
+/**
+ * The intended install command for a registry item (the CLI is the model).
+ *
+ * Defaults to npm so existing callers stay unchanged; pass a package manager to
+ * render the equivalent runner command (pnpm dlx / yarn dlx / bunx).
+ */
+function installCommand(name: string, pm: PackageManager = 'npm'): string {
+  return addCommand(name, pm);
 }
 
 /** Resolve a registry JSON path relative to the deployed base. */
