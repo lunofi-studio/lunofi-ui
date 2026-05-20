@@ -9,6 +9,7 @@ storybook-static/
 
 # Generated registry artifact (CI-built, not committed)
 packages/registry/public/
+apps/web/public/r/
 
 # Turborepo
 .turbo/

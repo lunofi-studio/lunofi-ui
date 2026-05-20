@@ -1,0 +1,35 @@
+{
+  "name": "@lunofi/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "registry:build": "node ../../packages/registry/build.mjs --out public",
+    "prebuild": "node ../../packages/registry/build.mjs --out public",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit -p tsconfig.app.json"
+  },
+  "dependencies": {
+    "@lunofi/ui": "workspace:*",
+    "lucide-react": "^0.577.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@lunofi/eslint-config": "workspace:*",
+    "@lunofi/tailwind": "workspace:*",
+    "@lunofi/tsconfig": "workspace:*",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.3.1",
+    "globals": "^17.0.0",
+    "tailwindcss": "^4.3.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.13"
+  }
+}

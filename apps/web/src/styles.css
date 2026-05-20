@@ -1,0 +1,53 @@
+/*
+ * App stylesheet for @lunofi/web.
+ *
+ * The turnkey theme entry pulls in Tailwind v4, tw-animate-css, the Geist
+ * variable font, and the calm lunofi token set. Do NOT redefine tokens here —
+ * re-theme by overriding the CSS variables exposed in @lunofi/tailwind.
+ */
+@import '@lunofi/tailwind/theme.css';
+
+/*
+ * Tailwind v4 only generates the utilities it sees referenced in scanned
+ * source. The @lunofi/ui components live outside this app, so point the
+ * scanner at their source (resolved via the workspace symlink under
+ * node_modules) and at this app's own source.
+ */
+@source '../../../packages/ui/src';
+@source './';
+
+/*
+ * A small set of restrained, calm-feeling helpers used by the marketing
+ * sections. Everything stays inside the existing token palette.
+ */
+@layer components {
+  /* A faint dotted field used behind the hero — quiet, not noisy. */
+  .bg-dotted {
+    background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* One signature, restrained load motion: a soft staggered fade-up. Pair with
+     an inline `--reveal-delay` style for sequencing. */
+  .reveal {
+    animation: lunofi-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+@keyframes lunofi-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
