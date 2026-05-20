@@ -7,6 +7,39 @@
     "./button": {
       "import": "./src/components/button.tsx"
     },
+    "./dialog": {
+      "import": "./src/components/dialog.tsx"
+    },
+    "./alert-dialog": {
+      "import": "./src/components/alert-dialog.tsx"
+    },
+    "./drawer": {
+      "import": "./src/components/drawer.tsx"
+    },
+    "./sheet": {
+      "import": "./src/components/sheet.tsx"
+    },
+    "./popover": {
+      "import": "./src/components/popover.tsx"
+    },
+    "./tooltip": {
+      "import": "./src/components/tooltip.tsx"
+    },
+    "./dropdown-menu": {
+      "import": "./src/components/dropdown-menu.tsx"
+    },
+    "./collapsible": {
+      "import": "./src/components/collapsible.tsx"
+    },
+    "./accordion": {
+      "import": "./src/components/accordion.tsx"
+    },
+    "./scroll-area": {
+      "import": "./src/components/scroll-area.tsx"
+    },
+    "./preview-card": {
+      "import": "./src/components/preview-card.tsx"
+    },
     "./badge": {
       "import": "./src/components/badge.tsx"
     },
