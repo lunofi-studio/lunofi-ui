@@ -1,0 +1,22 @@
+{
+  "name": "@lunofi/registry",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Zero-dependency build script that emits the lunofi-ui component registry from @lunofi/ui source.",
+  "scripts": {
+    "build": "node build.mjs",
+    "registry:build": "node build.mjs",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@lunofi/eslint-config": "workspace:*",
+    "@lunofi/tsconfig": "workspace:*",
+    "@lunofi/ui": "workspace:*",
+    "@lunofi/tailwind": "workspace:*",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.39.4",
+    "typescript": "~5.9.3"
+  }
+}
