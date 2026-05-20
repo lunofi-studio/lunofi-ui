@@ -98,7 +98,7 @@ function DocsSidebarMobile({ items }: { items: RegistryIndexItem[] }) {
               Components
             </DrawerTitle>
           </DrawerHeader>
-          <div className="overflow-y-auto px-3 pb-8">
+          <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-8">
             <DrawerClose className="sr-only">Close</DrawerClose>
             <DocsNav items={items} onNavigate={() => setOpen(false)} />
           </div>

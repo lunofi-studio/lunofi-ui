@@ -8,7 +8,7 @@ import { useDocsContext } from '@/pages/docs-layout';
 import { groupByCategory, installCommand } from '@/lib/registry';
 import { getDemo } from '@/showcase/demos';
 
-const FEATURED = ['button', 'dialog', 'select', 'table'];
+const FEATURED = ['button', 'select', 'dialog', 'tabs'];
 
 /**
  * The page users land on at /docs/components: a short orientation, the install
@@ -42,22 +42,24 @@ function DocsOverviewPage() {
           {featured.map((item) => {
             const demo = getDemo(item.name);
             return (
-              <Link
+              <article
                 key={item.name}
-                to={`/docs/components/${item.name}`}
-                className="group bg-card hover:border-border focus-visible:ring-ring/50 flex flex-col overflow-hidden rounded-xl border outline-none focus-visible:ring-[3px]"
+                className="bg-card flex flex-col overflow-hidden rounded-xl border"
               >
                 <div className="bg-dotted flex min-h-32 flex-1 items-center justify-center p-6">
-                  <div className="pointer-events-none origin-center scale-90">{demo?.()}</div>
+                  {demo?.()}
                 </div>
-                <div className="flex items-center justify-between gap-2 border-t px-4 py-3">
+                <Link
+                  to={`/docs/components/${item.name}`}
+                  className="group hover:bg-muted/50 focus-visible:ring-ring/50 flex items-center justify-between gap-2 border-t px-4 py-3 outline-none focus-visible:ring-[3px] focus-visible:ring-inset"
+                >
                   <span className="font-medium tracking-tight">{item.title}</span>
                   <ArrowRightIcon
                     className="text-muted-foreground size-4 transition-transform group-hover:translate-x-0.5"
                     aria-hidden
                   />
-                </div>
-              </Link>
+                </Link>
+              </article>
             );
           })}
         </div>

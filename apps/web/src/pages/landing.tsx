@@ -51,7 +51,7 @@ const quickStartSteps = [
   },
 ];
 
-const featuredComponents = ['button', 'select', 'dialog', 'table'];
+const featuredComponents = ['button', 'select', 'switch', 'tabs'];
 
 function LandingPage() {
   return (
@@ -214,13 +214,19 @@ function FeaturedComponents() {
         {featuredComponents.map((name) => {
           const demo = getDemo(name);
           return (
-            <Link
-              key={name}
-              to={`/docs/components/${name}`}
-              className="group bg-card hover:border-border focus-visible:ring-ring/50 flex min-h-36 items-center justify-center overflow-hidden rounded-xl border p-5 outline-none focus-visible:ring-[3px]"
-            >
-              <div className="pointer-events-none origin-center scale-90">{demo?.()}</div>
-            </Link>
+            <article key={name} className="bg-card flex flex-col overflow-hidden rounded-xl border">
+              <div className="flex min-h-32 flex-1 items-center justify-center p-5">{demo?.()}</div>
+              <Link
+                to={`/docs/components/${name}`}
+                className="group text-muted-foreground hover:bg-muted/50 hover:text-foreground focus-visible:ring-ring/50 flex items-center justify-between gap-2 border-t px-4 py-2.5 text-sm capitalize outline-none transition-colors focus-visible:ring-[3px] focus-visible:ring-inset"
+              >
+                {name.replace(/-/g, ' ')}
+                <ArrowRightIcon
+                  className="size-3.5 transition-transform group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </Link>
+            </article>
           );
         })}
       </div>
