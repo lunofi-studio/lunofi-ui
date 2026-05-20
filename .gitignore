@@ -7,6 +7,9 @@ build/
 *.tsbuildinfo
 storybook-static/
 
+# Generated registry artifact (CI-built, not committed)
+packages/registry/public/
+
 # Turborepo
 .turbo/
 

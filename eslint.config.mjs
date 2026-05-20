@@ -17,4 +17,14 @@ export default [
       },
     },
   },
+  {
+    // Node ESM scripts (e.g. the registry build script) — give them node
+    // globals so `process`/`console` resolve under flat config.
+    files: ['packages/registry/**/*.mjs'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
 ];
