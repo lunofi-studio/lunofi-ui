@@ -17,7 +17,8 @@
     "lucide-react": "^0.577.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.9.4"
+    "react-router-dom": "^7.9.4",
+    "shiki": "^4.1.0"
   },
   "devDependencies": {
     "@lunofi/eslint-config": "workspace:*",
