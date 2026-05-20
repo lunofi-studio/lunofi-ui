@@ -79,6 +79,39 @@
     "./banner": {
       "import": "./src/components/banner.tsx"
     },
+    "./checkbox": {
+      "import": "./src/components/checkbox.tsx"
+    },
+    "./switch": {
+      "import": "./src/components/switch.tsx"
+    },
+    "./radio-group": {
+      "import": "./src/components/radio-group.tsx"
+    },
+    "./slider": {
+      "import": "./src/components/slider.tsx"
+    },
+    "./select": {
+      "import": "./src/components/select.tsx"
+    },
+    "./tabs": {
+      "import": "./src/components/tabs.tsx"
+    },
+    "./toggle": {
+      "import": "./src/components/toggle.tsx"
+    },
+    "./toggle-group": {
+      "import": "./src/components/toggle-group.tsx"
+    },
+    "./field": {
+      "import": "./src/components/field.tsx"
+    },
+    "./label": {
+      "import": "./src/components/label.tsx"
+    },
+    "./form": {
+      "import": "./src/components/form.tsx"
+    },
     "./container": {
       "import": "./src/primitives/container.tsx"
     },
