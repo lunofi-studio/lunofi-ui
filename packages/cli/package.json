@@ -1,0 +1,37 @@
+{
+  "name": "lunofi",
+  "version": "0.0.0",
+  "description": "The lunofi-ui CLI — add calm, customizable Base UI + Tailwind components to your project, shadcn-style.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "lunofi": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunofi/lunofi-ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://lunofi-ui.com",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/postbuild.mjs",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@lunofi/eslint-config": "workspace:*",
+    "@lunofi/tsconfig": "workspace:*",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.39.4",
+    "typescript": "~5.9.3"
+  }
+}
